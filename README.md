@@ -1,1 +1,1 @@
-# ai-fake-news-detection
+# Fake News Detection AI
