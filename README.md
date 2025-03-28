@@ -34,7 +34,7 @@ Try it out at: [https://fake-news-frontend.onrender.com](https://fake-news-front
 ## Installation (Local Setup)
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/fake-news-app.git
+   git clone https://github.com/akshaydodkade/ai-fake-news-detection.git
    cd fake-news-app
 
 2. **Node.js Service**:
