@@ -14,7 +14,7 @@ app.post('/predict', async (req, res) => {
   if (!text) return res.status(400).json({ error: 'Text is required' });
 
   try {
-    const pythonUrl = 'http://your-python-service.onrender.com/predict';
+    const pythonUrl = 'https://fake-news-predictor-wa1s.onrender.com/predict';
     const response = await axios.post(pythonUrl, { text });
     const prediction = response.data.prediction === 1 ? 'Real' : 'Fake';
     res.json({ prediction });
