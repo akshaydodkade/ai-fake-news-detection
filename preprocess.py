@@ -1,42 +1,39 @@
-import nltk
 import pandas as pd
 import re
-from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
 import nltk
 
-# download nltk data
 nltk.download('punkt')
-nltk.download('punkt_tab')
 nltk.download('stopwords')
-
-# load datasets
-fake = pd.read_csv('data/Fake.csv')
-true = pd.read_csv('data/True.csv')
-
-# add labels
-fake['label'] = 0
-true['label'] = 1
-
-# combine datasets
-data = pd.concat([fake, true], ignore_index=True)
-
-# clean text function
 stop_words = set(stopwords.words('english'))
 
 def clean_text(text):
-  text = text.lower()
-  text = re.sub(r'[^a-zA-Z\s]', '', text)
-  tokens = word_tokenize(text)
-  tokens = [word for word in tokens if word not in stop_words]
-  return ' '.join(tokens)
+    # Handle NaN or non-string input
+    if not isinstance(text, str) or pd.isna(text):
+        return ""  # Return empty string for NaN
+    text = text.lower()
+    text = re.sub(r'[^a-zA-Z0-9\s.,-]', '', text)  # Keep numbers, some punctuation
+    tokens = word_tokenize(text)
+    tokens = [word for word in tokens if word not in stop_words]
+    return ' '.join(tokens)
 
-# apply cleaning to title and text
-data['title'] = data['title'].apply(clean_text)
+# Load and preprocess data
+fake = pd.read_csv('data/Fake.csv')
+true = pd.read_csv('data/True.csv')
+
+# Add labels
+fake['label'] = 0
+true['label'] = 1
+
+# Combine datasets
+data = pd.concat([fake, true], ignore_index=True)
+
+# Clean text and drop rows with empty text after cleaning
 data['text'] = data['text'].apply(clean_text)
+data = data[data['text'].str.strip() != '']  # Remove rows with empty text
+data = data.dropna(subset=['text'])  # Drop any remaining NaN
 
-data['combined'] = data['title'] + ' ' + data['text']
-
-# save preprocessed dta
-data[['combined', 'label']].to_csv('data/processed_data.csv', index=False)
-print('Data preprocessing complete!')
+# Save preprocessed data
+data.to_csv('data/preprocessed_data.csv', index=False)
+print(f"Preprocessed {len(data)} rows successfully.")

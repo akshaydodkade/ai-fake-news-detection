@@ -3,6 +3,7 @@ const axios = require('axios');
 const cors = require('cors');
 const path = require('path');
 const app = express();
+const { exec } = require('child_process');
 
 app.use(cors());
 app.use(express.json());
@@ -24,6 +25,21 @@ app.post('/predict', async (req, res) => {
       message: err.message,
     });
   }
+});
+
+app.post('/local-predict', (req, res) => {
+  const { text } = req.body;
+  if (!text) return res.status(400).json({ error: 'Text is required' });
+
+  const pythonCmd = `python3 local-predict.py "${text}"`;
+  exec(pythonCmd, (err, stdout, stderr) => {
+    if (err) {
+      console.error('Exec error:', err, stderr);
+      return res.status(500).json({ error: stderr || err.message });
+    }
+    const prediction = stdout.trim() === '1' ? 'Real' : 'Fake';
+    res.json({ prediction });
+  });
 });
 
 app.get('*', (req, res) => {

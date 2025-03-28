@@ -1,7 +1,122 @@
-.App {
-    text-align: center;
-    margin-top: 50px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-textarea, button {
-    margin: 10px;
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+.App {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+}
+
+.header p {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+}
+
+.main {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.textarea {
+    width: 100%;
+    height: 150px;
+    padding: 15px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.textarea:focus {
+    border-color: #3498db;
+}
+
+.button {
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover:not(:disabled) {
+    background-color: #2980b9;
+}
+
+.button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+.loader {
+    width: 40px;
+    height: 40px;
+    margin: 20px auto;
+    border: 5px solid #ddd;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.result.real {
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+
+.result.fake {
+    background-color: #f2dede;
+    color: #a94442;
+}
+
+.result h2 {
+    font-size: 1.5rem;
 }
