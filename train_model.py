@@ -15,7 +15,9 @@ tfidf = TfidfVectorizer(max_features=5000)
 X_tfidf = tfidf.fit_transform(X)
 
 # Split data
-X_train, X_test, y_train, y_test = train_test_split(X_tfidf, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    X_tfidf, y, test_size=0.2, random_state=42, stratify=y
+)
 
 # Train model with class weighting
 model = LogisticRegression(class_weight='balanced')
@@ -30,7 +32,7 @@ print(f"Accuracy: {accuracy}")
 print("Report:\n", report)
 
 # Save model and vectorizer
-with open('model.pkl', 'wb') as f:
+with open('python-service/model_updated4.pkl', 'wb') as f:
     pickle.dump(model, f)
-with open('tfidf.pkl', 'wb') as f:
+with open('python-service/tfidf_updated4.pkl', 'wb') as f:
     pickle.dump(tfidf, f)

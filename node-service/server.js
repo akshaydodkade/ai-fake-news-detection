@@ -37,6 +37,7 @@ app.post('/local-predict', (req, res) => {
       console.error('Exec error:', err, stderr);
       return res.status(500).json({ error: stderr || err.message });
     }
+    console.log(stdout.trim());
     const prediction = stdout.trim() === '1' ? 'Real' : 'Fake';
     res.json({ prediction });
   });

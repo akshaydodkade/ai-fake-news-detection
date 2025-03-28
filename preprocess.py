@@ -6,17 +6,16 @@ import nltk
 
 nltk.download('punkt')
 nltk.download('stopwords')
-stop_words = set(stopwords.words('english'))
+stop_words = set(stopwords.words('english')) - {"not", "without"}
 
 def clean_text(text):
-    # Handle NaN or non-string input
-    if not isinstance(text, str) or pd.isna(text):
-        return ""  # Return empty string for NaN
-    text = text.lower()
-    text = re.sub(r'[^a-zA-Z0-9\s.,-]', '', text)  # Keep numbers, some punctuation
-    tokens = word_tokenize(text)
-    tokens = [word for word in tokens if word not in stop_words]
-    return ' '.join(tokens)
+  if not isinstance(text, str) or not text:
+    return ""
+  text = text.lower()
+  text = re.sub(r'[^a-zA-Z0-9\s.,:\'"]', '', text)  # Keep quotes, colons
+  tokens = word_tokenize(text)
+  tokens = [word for word in tokens if word not in stop_words]
+  return ' '.join(tokens)
 
 # Load and preprocess data
 fake = pd.read_csv('data/Fake.csv')

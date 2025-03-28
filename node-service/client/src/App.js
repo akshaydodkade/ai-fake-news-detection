@@ -16,7 +16,8 @@ function App() {
     setLoading(true);
     setPrediction('');
     try {
-      const res = await axios.post('https://fake-news-frontend.onrender.com/predict', { text });
+      const res = await axios.post('http://localhost:5000/local-predict', { text });
+      // const res = await axios.post('https://fake-news-frontend.onrender.com/predict', { text });
       setPrediction(res.data.prediction);
     } catch (err) {
       console.error(err);
