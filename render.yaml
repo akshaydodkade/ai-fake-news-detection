@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: fake-news-frontend
+    env: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    rootDir: node-service
+    autoDeploy: true
+
+  - type: web
+    name: fake-news-predictor
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python predict.py
+    rootDir: python-service
+    autoDeploy: true

@@ -1,0 +1,19 @@
+{
+  "name": "fake-news-predictor",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "cd client && npm install && npm run build",
+    "postinstall": "cd client && npm install && npm run build"
+  },
+  "keywords": [],
+  "author": "Akshay Dodkade",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.17.1",
+    "cors": "^2.8.5",
+    "axios": "^1.6.0"
+  }
+}
