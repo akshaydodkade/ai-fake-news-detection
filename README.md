@@ -12,17 +12,17 @@ Try it out at: [https://fake-news-frontend.onrender.com](https://fake-news-front
 - **Dual-Service Architecture**: Node.js service for UI/API, Python service for ML predictions.
 
 ## Project Structure
-  fake-news-app/
-  ├── node-service/        # Node.js service (Frontend + Backend)
-  │   ├── client/          # React frontend
-  │   ├── server.js        # Node.js backend
-  │   ├── package.json     # Node.js dependencies
-  ├── python-service/      # Python service (ML Prediction)
-  │   ├── predict.py       # Flask API for predictions
-  │   ├── model.pkl        # Trained model
-  │   ├── tfidf.pkl        # TF-IDF vectorizer
-  │   ├── requirements.txt # Python dependencies
-  └── render.yaml          # Render deployment config
+    fake-news-app/
+    ├── node-service/        # Node.js service (Frontend + Backend)
+    │   ├── client/          # React frontend
+    │   ├── server.js        # Node.js backend
+    │   ├── package.json     # Node.js dependencies
+    ├── python-service/      # Python service (ML Prediction)
+    │   ├── predict.py       # Flask API for predictions
+    │   ├── model.pkl        # Trained model
+    │   ├── tfidf.pkl        # TF-IDF vectorizer
+    │   ├── requirements.txt # Python dependencies
+    └── render.yaml          # Render deployment config
 
 
 ## How It Works
@@ -34,21 +34,21 @@ Try it out at: [https://fake-news-frontend.onrender.com](https://fake-news-front
 ## Installation (Local Setup)
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/akshaydodkade/ai-fake-news-detection.git
+   git clone https://github.com/yourusername/fake-news-app.git
    cd fake-news-app
 
 2. **Node.js Service**:
-  ```bash
-  cd node-service
-  npm install
-  cd client && npm install && npm run build
+    ```bash
+    cd node-service
+    npm install
+    cd client && npm install && npm run build
 
 3. **Python Service**:
-  ```bash
-  cd ../python-service
-  python3 -m venv venv
-  source venv/bin/activate
-  pip install -r requirements.txt
+    ```bash
+    cd ../python-service
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install -r requirements.txt
 
 4. **Run Locally**:
   - Start Python service: python predict.py (runs on port 5001)
